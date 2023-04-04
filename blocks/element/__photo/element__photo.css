@@ -1,12 +1,13 @@
 .element__photo {
+  display: block;
   width: 100%;
-  height: 79%;
+  height: 78%;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
 }
 
 @media (max-width: 720px) {
   .element__photo {
-    height: 78.5%;
+    width: 282px;
   }
 }
