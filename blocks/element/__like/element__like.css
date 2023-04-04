@@ -1,15 +1,14 @@
 .element__like {
+  padding: 0;
   width: 22px;
   height: 19px;
   background-image: url(../../../images/disabled-like.svg);
   background-repeat: no-repeat;
   background-color: unset;
   border: none;
-  position: absolute;
-  bottom: 26px;
-  right: 30px;
 }
 
 .element__like:hover {
-  opacity: 0.6;
+  opacity: 0.5;
+  cursor: pointer;
 }

@@ -4,14 +4,14 @@
   border: 0;
   border-radius: 2px;
   min-height: 50px;
-  margin-top: 18px;
+  margin-top: 44px;
   padding: 0;
   width: 100%;
   transition: background-color .2s;
 }
   
 .popup__save:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0.8;  
   cursor: pointer;
 }
   

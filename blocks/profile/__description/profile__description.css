@@ -1,4 +1,4 @@
-.profile__discription {
+.profile__description {
   max-width: 336px;
   font-size: 18px;
   line-height: 22px;
@@ -7,16 +7,19 @@
   white-space: nowrap;
   overflow: hidden;
   margin-left: 30px;
+  
 }
   
-@media all and (max-width: 767px) {
-  .profile__discription {
+@media all and (max-width: 1040px) {
+  .profile__description {
     text-align: center;
+    margin: 0 0 32px 0;
+    
   }
 }
   
 @media all and (max-width: 425px) {
-  .profile__discription {
+  .profile__description {
     max-width: 282px;
     font-size: 14px;
     line-height: 17px;
