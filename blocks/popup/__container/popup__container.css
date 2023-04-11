@@ -11,6 +11,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: stretch;
+
+  
 }
 
 @media (max-width: 425px) {

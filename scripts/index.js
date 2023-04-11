@@ -17,7 +17,10 @@ const descriptionInput =  document.querySelector ('.popup__input_type_descriptio
 const locationInput = document.querySelector ('.popup__input_type_location');
 const linkInput = document.querySelector ('.popup__input_type_link');
 
-
+const show = document.querySelector('.popup_show');
+const content = document.querySelector('.popup__content');
+const image = document.querySelector('.popup__image');
+const figcaption = document.querySelector('.popup__figcaption');
 
 const closeButton = document.querySelectorAll ('.popup__close');
 
@@ -84,17 +87,22 @@ function createPost(object) {
   const element = template.querySelector('.element').cloneNode(true);
   const deleteElement = element.querySelector('.element__delete');
   const photoElement = element.querySelector('.element__photo');
+  const likeElement = element.querySelector('.element__like');
   
   photoElement.alt = object.name;
   photoElement.src = object.link;
   element.querySelector('.element__location').textContent = object.name;
-  
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-  const likeElement = element.querySelector('.element__like');
+
   likeElement.addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
-//////////////////////////////////////////////////////////////////////////////////////////////////////
   
   deleteElement.addEventListener('click', (evt) => evt.target.closest('.element').remove());
+
+  photoElement.addEventListener('click', () => {
+    image.src = object.link;
+    image.alt = object.name;
+    figcaption.textContent = object.name;
+    openPopup(show);
+  });
 
   return element;
 };
