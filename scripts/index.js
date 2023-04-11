@@ -117,7 +117,6 @@ formPhoto.addEventListener('submit', (evt) => {
   const object = {name: locationInput.value, link: linkInput.value};
   const card = createPost(object);
   elements.prepend(card);
-  closePopup (photoPopup)
+  closePopup(photoPopup)
   evt.target.reset();
 });
-
