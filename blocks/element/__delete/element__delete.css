@@ -8,7 +8,8 @@
   height: 19px;
   border: none;
   outline: none;
-  background-color: unset;     
+  background-color: unset;  
+  z-index: 1;   
 }
 
 .element__delete:hover {
