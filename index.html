@@ -31,63 +31,7 @@
           <button type="button" class="profile__add-button" aria-label="Добавить пост"></button>
         </section>
 
-        <section class="elements">
-          <!--
-          <article class="element">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
-            <img class="element__photo" src="./images/IMG_2445.jpg" alt="озеро Выгозеро">
-            <div class="element__info">
-              <h2 class="element__location">Карелия</h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
-            <img class="element__photo" src="./images/IMG_2721.jpg" alt="Кольский район">
-            <div class="element__info">
-              <h2 class="element__location">Териберка</h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
-            </div>  
-          </article>
-
-          <article class="element">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
-            <img class="element__photo" src="./images/IMG_2701.jpg" alt="Баренцево море">
-            <div class="element__info">
-              <h2 class="element__location">Баренцево море</h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
-            </div>  
-          </article>
-
-          <article class="element">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
-            <img class="element__photo" src="./images/photo_1.jpg" alt="Сентинский храм">
-            <div class="element__info">
-              <h2 class="element__location">Карачаевск</h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
-            </div>  
-          </article>
-    
-          <article class="element">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
-            <img class="element__photo" src="./images/photo_2.jpg" alt="Гора Эльбрус">
-            <div class="element__info">
-              <h2 class="element__location">Гора Эльбрус</h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
-            </div>  
-          </article>
-    
-          <article class="element">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
-            <img class="element__photo" src="./images/photo_3.png" alt="Белалакая">
-            <div class="element__info">
-              <h2 class="element__location">Домбай</h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
-            </div>  
-          </article>
-          -->
-        </section>
+        <section class="elements"></section>
       </main>
 
       <footer class="footer">
@@ -99,9 +43,11 @@
   <div class="popup popup_profile">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="profile-form" >
-          <input type="text" class="popup__input popup__input_type_name" name="userName" placeholder="Имя">
-          <input type="text" class="popup__input popup__input_type_description" name="userDescription" placeholder="О себе" >
+      <form class="popup__form" name="profile-form" novalidate>
+        <input type="text" id="name-input" class="popup__input popup__input_type_name" name="userName" placeholder="Имя" minlength="2" maxlength="40" required>
+        <span class="popup__error name-input-error"></span>
+        <input type="text" id="description-input" class="popup__input popup__input_type_description" name="userDescription" placeholder="О себе" minlength="2" maxlength="200" required>
+        <span class="popup__error description-input-error"></span>
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
       <button type="button" class="popup__close" aria-label="Закрыть"></button>
@@ -111,9 +57,11 @@
   <div class="popup popup_photo">
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="add-photo-form" >
-          <input type="text" class="popup__input popup__input_type_location" name="userLocation" placeholder="Название">
-          <input type="url" class="popup__input popup__input_type_link" name="userLink" placeholder="Ссылка на картинку" >
+      <form class="popup__form" name="add-photo-form" novalidate>
+        <input type="text" id="location-input" class="popup__input popup__input_type_location" name="userLocation" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="popup__error location-input-error"></span>
+        <input type="url" id="link-input" class="popup__input popup__input_type_link" name="userLink" placeholder="Ссылка на картинку" required>
+        <span class="popup__error link-input-error"></span>
         <button type="submit" class="popup__save">Создать</button>
       </form>
       <button type="button" class="popup__close" aria-label="Закрыть"></button>
@@ -140,7 +88,8 @@
       </div>
     </article>
   </template>
-  
+
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>

@@ -38,11 +38,28 @@ const elements = document.querySelector('.elements');
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupPressEsc);
+  popup.addEventListener('mousedown', closePopupClickOverlay);
 };
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupPressEsc);
+  popup.removeEventListener('mousedown', closePopupClickOverlay);
 };
+
+function closePopupPressEsc(evt, popup) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  };
+}
+
+function closePopupClickOverlay(evt, popup) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
+  };
+}
 
 profileEditButton.addEventListener('click', () => {
   editProfileNameInput.value = profileName.textContent;
