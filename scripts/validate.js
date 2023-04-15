@@ -1,14 +1,12 @@
 const showInputError = (form, input, errorMessage, obj) => {
   const errorItem = form.querySelector(`.${input.id}-error`);
   input.classList.add(obj.inputErrorClass);
-  errorItem.classList.add('popup__input_type_error-active');
   errorItem.textContent = errorMessage;
 };
 
 const hideInputError = (form, input, obj) => {
   const errorItem = form.querySelector(`.${input.id}-error`);
   input.classList.remove(obj.inputErrorClass);
-  errorItem.classList.remove('popup__input_type_error-active');
   errorItem.textContent = '';
 };
 
@@ -60,11 +58,4 @@ const enableValidation = (obj) => {
   });
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__save_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(validationConfig);

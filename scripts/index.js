@@ -34,7 +34,7 @@ const closeButtonList = document.querySelectorAll ('.popup__close');
 // template-элементы:
 
 const template = document.querySelector('#template').content;
-const elements = document.querySelector('.elements');
+const cardList = document.querySelector('.elements');
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
@@ -108,14 +108,14 @@ function createPost(object) {
 
 initialCards.forEach((element) => {
   const card = createPost(element);
-  elements.append(card);
+  cardList.append(card);
 });
 
 addCardForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const object = {name: addCardLocationInput.value, link: addCardLinkInput.value};
   const card = createPost(object);
-  elements.prepend(card);
+  cardList.prepend(card);
   closePopup(addCardPopup)
   evt.target.reset();
 });
