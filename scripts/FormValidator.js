@@ -38,11 +38,7 @@ class FormValidator {
     };
   }
 
-  _hasInvalidInput = () => {
-    return Array.from(this._element.querySelectorAll(this._config.inputSelector)).some((input) => {
-      return !input.validity.valid;
-    });
-  }
+  _hasInvalidInput = () => this._inputList.some(input => !input.validity.valid)
 
   _setEventListener = () => {
     this._toggleButtonState();

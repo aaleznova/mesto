@@ -1,8 +1,8 @@
 export default class Card {
-  constructor(object, selectorTemplate, openPhotoPopup) {
-    this._object = object;
-    this._link = object.link;
-    this._name = object.name;
+  constructor(card, selectorTemplate, openPhotoPopup) {
+    this._card = card;
+    this._link = card.link;
+    this._name = card.name;
     this._selectorTemplate = selectorTemplate;
     this._openPhotoPopup = openPhotoPopup;
   }
@@ -34,7 +34,8 @@ export default class Card {
   }
   
   _handleDelete = () => {
-    this._deleteElement.closest('.element').remove();
+    this._cloneElement.remove();
+    this._cloneElement = null;
   }
   
   _handlePhoto = () => {

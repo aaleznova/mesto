@@ -44,6 +44,8 @@ const cardList = document.querySelector('.elements');
 const editProfileValidator = new FormValidator(validationConfig, editProfileForm);
 const addCardValidator = new FormValidator(validationConfig, addCardForm);
 
+const popups = Array.from(document.querySelectorAll('.popup'));
+
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
@@ -57,26 +59,29 @@ function openPhotoPopup(object) {
   showPictureFigcaption.textContent = object.name;
   openPopup(showPicturePopup);
   editProfileValidator.resetValidation();
-}
-
-function closePopup (popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupPressEsc);
-  popup.removeEventListener('mousedown', closePopupClickOverlay);
 };
 
-function closePopupPressEsc(evt, popup) {
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupPressEsc);
+};
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', handleCloseByClick);
+});
+
+function closePopupPressEsc(evt) {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   };
-}
+};
 
-function closePopupClickOverlay(evt, popup) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target);
+function handleCloseByClick(evt) {
+  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close')) {
+    closePopup(evt.currentTarget)
   };
-}
+};
 
 profileEditButton.addEventListener('click', () => {
   editProfileNameInput.value = profileName.textContent;
@@ -88,7 +93,7 @@ editProfileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   profileName.textContent = editProfileNameInput.value;
   profileDescription.textContent = editProfileDescriptionInput.value;
-  closePopup (editProfilePopup);
+  closePopup(editProfilePopup);
 });
 
 profileAddButton.addEventListener('click', () => {openPopup(addCardPopup); addCardValidator.resetValidation()});
