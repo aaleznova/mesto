@@ -1,3 +1,7 @@
+import { initialCards, validationConfig } from './constants.js';
+import Card from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 // элементы секции profile:
 
 const profileName = document.querySelector ('.profile__name');
@@ -33,14 +37,27 @@ const closeButtonList = document.querySelectorAll ('.popup__close');
 
 // template-элементы:
 
-const template = document.querySelector('#template').content;
+const selectorTemplate = '#template';
 const cardList = document.querySelector('.elements');
+
+//validator
+const editProfileValidator = new FormValidator(validationConfig, editProfileForm);
+const addCardValidator = new FormValidator(validationConfig, addCardForm);
+
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupPressEsc);
   popup.addEventListener('mousedown', closePopupClickOverlay);
 };
+
+function openPhotoPopup(object) {
+  showPictureImage.src = object.link;
+  showPictureImage.alt = object.name;
+  showPictureFigcaption.textContent = object.name;
+  openPopup(showPicturePopup);
+  editProfileValidator.resetValidation();
+}
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
@@ -74,7 +91,7 @@ editProfileForm.addEventListener('submit', (evt) => {
   closePopup (editProfilePopup);
 });
 
-profileAddButton.addEventListener('click', () => openPopup(addCardPopup));
+profileAddButton.addEventListener('click', () => {openPopup(addCardPopup); addCardValidator.resetValidation()});
 
 closeButtonList.forEach((element) => {
   element.addEventListener('click', () => {
@@ -82,40 +99,22 @@ closeButtonList.forEach((element) => {
   });
 });
 
-function createPost(object) {
-  const element = template.querySelector('.element').cloneNode(true);
-  const deleteElement = element.querySelector('.element__delete');
-  const photoElement = element.querySelector('.element__photo');
-  const likeElement = element.querySelector('.element__like');
-  
-  photoElement.alt = object.name;
-  photoElement.src = object.link;
-  element.querySelector('.element__location').textContent = object.name;
-
-  likeElement.addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
-  
-  deleteElement.addEventListener('click', (evt) => evt.target.closest('.element').remove());
-
-  photoElement.addEventListener('click', () => {
-    showPictureImage.src = object.link;
-    showPictureImage.alt = object.name;
-    showPictureFigcaption.textContent = object.name;
-    openPopup(showPicturePopup);
-  });
-
-  return element;
+function createNewPost(element) {
+  const card = new Card(element, selectorTemplate, openPhotoPopup);
+  return card.createPost();
 };
 
 initialCards.forEach((element) => {
-  const card = createPost(element);
-  cardList.append(card);
+  cardList.append(createNewPost(element));
 });
+
+editProfileValidator.enableValidation();
+addCardValidator.enableValidation();
 
 addCardForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const object = {name: addCardLocationInput.value, link: addCardLinkInput.value};
-  const card = createPost(object);
-  cardList.prepend(card);
+  cardList.prepend(createNewPost(object));
   closePopup(addCardPopup)
   evt.target.reset();
 });
