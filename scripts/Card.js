@@ -39,7 +39,7 @@ export default class Card {
   }
   
   _handlePhoto = () => {
-    this._openPhotoPopup(this._object);
+    this._openPhotoPopup(this._card);
   }
   
   _handleLike = () => {

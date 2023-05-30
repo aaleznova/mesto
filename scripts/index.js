@@ -50,7 +50,6 @@ const popups = Array.from(document.querySelectorAll('.popup'));
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupPressEsc);
-  popup.addEventListener('mousedown', closePopupClickOverlay);
 };
 
 function openPhotoPopup(object) {
@@ -98,12 +97,6 @@ editProfileForm.addEventListener('submit', (evt) => {
 
 profileAddButton.addEventListener('click', () => {openPopup(addCardPopup); addCardValidator.resetValidation()});
 
-closeButtonList.forEach((element) => {
-  element.addEventListener('click', () => {
-    closePopup(element.closest('.popup'));
-  });
-});
-
 function createNewPost(element) {
   const card = new Card(element, selectorTemplate, openPhotoPopup);
   return card.createPost();
@@ -118,8 +111,8 @@ addCardValidator.enableValidation();
 
 addCardForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const object = {name: addCardLocationInput.value, link: addCardLinkInput.value};
-  cardList.prepend(createNewPost(object));
+  const cardData = {name: addCardLocationInput.value, link: addCardLinkInput.value};
+  cardList.prepend(createNewPost(cardData));
   closePopup(addCardPopup)
   evt.target.reset();
 });
