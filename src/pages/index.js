@@ -17,12 +17,12 @@ const popupImage = new PopupWithImage(popupImageSelector);
 
 const popupProfile = new PopupWithForm(editProfileSelector, (evt) => {
   evt.preventDefault();
-  userInfo.setUserInfo(popupProfile._getInputValues());
+  userInfo.setUserInfo(popupProfile.getInputValues());
   popupProfile.close();
 });
 const popupAddCard = new PopupWithForm(addCardSelector, (evt) => {
   evt.preventDefault();
-  section.addItem(section._renderer(popupAddCard._getInputValues()));
+  section.addItem(section.renderer(popupAddCard.getInputValues()));
   popupAddCard.close();
 });
 
@@ -40,7 +40,7 @@ const editProfileValidator = new FormValidator(validationConfig, editProfileForm
 const addCardValidator = new FormValidator(validationConfig, addCardForm);
 
 profileEditButton.addEventListener('click', () => {
-  popupProfile._setInputValues(userInfo.getUserInfo());
+  popupProfile.setInputValues(userInfo.getUserInfo());
   popupProfile.open();
   editProfileValidator.resetValidation();
 });
