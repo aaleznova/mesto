@@ -15,15 +15,11 @@ const userInfo = new UserInfo(configInfo);
 
 const popupImage = new PopupWithImage(popupImageSelector);
 
-const popupProfile = new PopupWithForm(editProfileSelector, (evt) => {
-  evt.preventDefault();
-  userInfo.setUserInfo(popupProfile.getInputValues());
-  popupProfile.close();
+const popupProfile = new PopupWithForm(editProfileSelector, (data) => {
+  userInfo.setUserInfo(data);
 });
-const popupAddCard = new PopupWithForm(addCardSelector, (evt) => {
-  evt.preventDefault();
-  section.addItem(section.renderer(popupAddCard.getInputValues()));
-  popupAddCard.close();
+const popupAddCard = new PopupWithForm(addCardSelector, (data) => {
+  section.addItem(section.renderer(data));
 });
 
 const section = new Section({

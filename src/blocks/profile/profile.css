@@ -6,11 +6,10 @@
   align-items: center;
 }
 
-  
 @media all and (max-width: 1024px) {
   .profile {
     flex-direction: column;
-    max-width: 718px;
+    max-width: 640px;
   }
 }
 
